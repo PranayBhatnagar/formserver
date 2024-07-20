@@ -14,6 +14,10 @@ def submit():
     # Log the received data
     app.logger.info(f"Received submission: Name={name}, Email={email}, Message={message}")
 
+    # Save data to a file
+    with open('submissions.txt', 'a') as file:
+        file.write(f"Name: {name}, Email: {email}, Message: {message}\n")
+
     response = {
         'status': 'success',
         'name': name,
@@ -25,6 +29,3 @@ def submit():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
-
-import logging
-logging.basicConfig(level=logging.INFO)
