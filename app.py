@@ -9,7 +9,8 @@ def submit():
     email = request.form.get('your-email')
     message = request.form.get('your-message')
 
-    # Here you can process the data, save it to a database, or send an email
+    # Log the received data
+    app.logger.info(f"Received submission: Name={name}, Email={email}, Message={message}")
 
     response = {
         'status': 'success',
