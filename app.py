@@ -26,6 +26,15 @@ def submit():
     }
     return jsonify(response)
 
+@app.route('/view_submissions', methods=['GET'])
+def view_submissions():
+    try:
+        with open('submissions.txt', 'r') as file:
+            content = file.read()
+        return content
+    except FileNotFoundError:
+        return 'No submissions found', 404
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
